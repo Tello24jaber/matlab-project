@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
 </head>
 <body class="dark-mode">
     
@@ -136,6 +140,40 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="bento-card">
+                        <div class="mac-bar mini"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        <div class="bento-content">
+                            <h3>5. Gaussian Elimination</h3>
+                            <p>A system $Ax = b$ is solved by transforming the augmented matrix $[A|b]$ into <strong>Row Echelon Form (REF)</strong> using three elementary row operations:</p>
+                            <ul class="theory-list">
+                                <li>$R_i \leftrightarrow R_j$ — swap two rows</li>
+                                <li>$R_i \leftarrow c \cdot R_i$ — scale a row by $c \ne 0$</li>
+                                <li>$R_i \leftarrow R_i + c \cdot R_j$ — add a multiple of one row to another</li>
+                            </ul>
+                            <p>Back-substitution on the REF yields the solution. Further reduction to <strong>RREF</strong> gives a unique, readable form with leading 1s.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="mac-bar mini"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        <div class="bento-content">
+                            <h3>6. Rank &amp; Free Variables</h3>
+                            <p>The <strong>rank</strong> of $A$ is the number of pivot columns after row reduction. If $\text{rank}(A) < n$ (number of unknowns), the system is <em>under-determined</em>:</p>
+                            <div class="math-block"># free variables = n &minus; rank(A)</div>
+                            <p>Free variables can take any real value. Each choice produces a valid solution — the solution space is a <strong>line, plane, or hyperplane</strong> (an affine subspace) rather than a single point.</p>
+                            <p>In our traffic model: 4 unknowns, rank = 3 &Rightarrow; exactly <strong>1 free variable</strong> ($x_2$), yielding infinitely many physically valid traffic states.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="mac-bar mini"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        <div class="bento-content">
+                            <h3>7. Linear Independence &amp; Dependence</h3>
+                            <p>A set of vectors $\{v_1, \dots, v_m\}$ is <strong>linearly dependent</strong> if at least one vector can be written as a linear combination of the others — equivalently, $c_1 v_1 + \cdots + c_m v_m = 0$ has a non-trivial solution.</p>
+                            <p>In traffic flow, the four conservation equations are linearly <em>dependent</em>: summing all four gives $0 = 0$, meaning one equation is redundant. This is precisely why a free variable emerges and why the system has infinitely many solutions.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -195,6 +233,29 @@
                 </div>
             </section>
 
+            <!-- App 1 Theory Derivation -->
+            <div class="reveal section-offset">
+                <div class="theory-derivation glass-card premium-shadow">
+                    <h3 class="card-title">&#x1F9EE; Mathematical Derivation — Malware Spread</h3>
+                    <div class="grid-2">
+                        <div>
+                            <p><strong>Step 1 — Build the adjacency matrix $A$.</strong> Each row $i$ represents a server. $A_{i,j} = 1$ if server $i$ has a direct connection to server $j$, otherwise $0$. For $n = 10$ nodes this is a $10 \times 10$ matrix.</p>
+                            <p><strong>Step 2 — Compute matrix powers.</strong> The entry $\left(A^k\right)_{i,j}$ counts the number of distinct directed paths of length exactly $k$ from node $i$ to node $j$. This follows from the definition of matrix multiplication: each step selects an intermediate node.</p>
+                            <p><strong>Step 3 — Form the cumulative matrix.</strong> Define $H = A + A^2 + \cdots + A^k$. Then $H_{i,j} > 0$ if and only if there exists at least one directed path of length $\le k$ from $i$ to $j$. Converting $H$ to a boolean matrix gives the exact <em>reachability set</em> of every node within $k$ hops.</p>
+                        </div>
+                        <div>
+                            <p><strong>Step 4 — Identify critical nodes.</strong></p>
+                            <ul class="theory-list">
+                                <li><strong>Most Critical Spreader</strong> = $\arg\max_i \sum_j H_{i,j}$ (node with the largest row sum — can reach the most others)</li>
+                                <li><strong>Most Vulnerable Node</strong> = $\arg\max_j \sum_i H_{i,j}$ (node with the largest column sum — reachable from the most sources)</li>
+                            </ul>
+                            <p><strong>Why matrix powers?</strong> A naive BFS traversal has complexity $O(n + e)$ per source. The matrix-power method amortises computation across all source nodes simultaneously: computing $A^k$ costs $O(n^3)$ but delivers the complete reachability map for <em>every</em> node at once — a critical advantage for large networks.</p>
+                            <div class="math-block mt-1">$H_{i,j} > 0 \Leftrightarrow \exists$ &nbsp;path $i \to j$ &nbsp;of length $\leq k$</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Chapter 4: Traffic Flow -->
             <section id="app2" class="reveal section-offset">
                 <div class="section-tag"><span class="glow-dot mint"></span> Phase 04 &mdash; Core Product II</div>
@@ -210,12 +271,36 @@
                         <div class="grid-2 align-center">
                             <div class="traffic-math">
                                 <h3>The Physics of Flow</h3>
-                                <p>$x_1 + x_2 = 250$<br>
+                                <p>Apply <strong>flow conservation</strong> at each intersection node (inflow = outflow):</p>
+                                <p class="eq-system">$x_1 + x_2 = 250$<br>
                                 $x_1 - x_3 = 150$<br>
                                 $-x_2 + x_4 = 200$<br>
                                 $x_3 + x_4 = 300$</p>
+                                <p>Write as the augmented matrix $[A\,|\,\mathbf{b}]$ and apply Gaussian elimination:</p>
+                                <div class="matrix-steps">
+                                    <div class="matrix-step">
+                                        <div class="step-label">Original System</div>
+                                        <table class="aug-table">
+                                            <tr><td>1</td><td>1</td><td>0</td><td>0</td><td class="aug-sep">250</td></tr>
+                                            <tr><td>1</td><td>0</td><td>&minus;1</td><td>0</td><td class="aug-sep">150</td></tr>
+                                            <tr><td>0</td><td>&minus;1</td><td>0</td><td>1</td><td class="aug-sep">200</td></tr>
+                                            <tr><td>0</td><td>0</td><td>1</td><td>1</td><td class="aug-sep">300</td></tr>
+                                        </table>
+                                    </div>
+                                    <div class="step-arrow">&#8594;<br><small>Gaussian<br>Elimination</small></div>
+                                    <div class="matrix-step">
+                                        <div class="step-label">Row Echelon Form</div>
+                                        <table class="aug-table">
+                                            <tr><td>1</td><td>1</td><td>0</td><td>0</td><td class="aug-sep">250</td></tr>
+                                            <tr><td>0</td><td>1</td><td>1</td><td>0</td><td class="aug-sep">100</td></tr>
+                                            <tr><td>0</td><td>0</td><td>1</td><td>1</td><td class="aug-sep">300</td></tr>
+                                            <tr class="dep-row"><td>0</td><td>0</td><td>0</td><td>0</td><td class="aug-sep">0</td><td class="dep-note">&#8592; dependent</td></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <p>$\text{rank}(A) = 3$, unknowns $= 4$ &Rightarrow; <strong>1 free variable</strong>. Let $x_2 = t \in [0, 100]$:</p>
                                 <hr>
-                                <p>Because the rows are linearly dependent, we have infinite mathematical solutions. We isolate <strong>$x_2$</strong> as the <em>free variable</em>.</p>
+                                <p>Back-substitution gives the <strong>general solution</strong> as a function of $t$:</p>
                                 
                                 <div class="slider-box">
                                     <label>Free Variable $x_2$: <strong class="text-cyan"><span id="x2-display">80</span> cars/h</strong></label>
@@ -236,8 +321,9 @@
                         </div>
 
                         <div class="insights-bar mt-2">
-                            <div><strong>Engineering Limit:</strong> Since $x_3 = 100 - x_2 \ge 0$, the maximum capacity for $x_2$ is <strong>100</strong>.</div>
-                            <div><strong>Road Closure:</strong> If $x_2 = 0$, $x_1$ hits peak 250. The system absorbs the shock gracefully.</div>
+                            <div><strong>Engineering Limit:</strong> Since $x_3 = 100 - x_2 \ge 0$, the maximum capacity for $x_2$ is <strong>100</strong>. Since all flows must be non-negative: $0 \le x_2 \le 100$.</div>
+                            <div><strong>Road Closure:</strong> If $x_2 = 0$, $x_1$ hits peak 250. The system absorbs the shock gracefully — one valid solution among infinitely many.</div>
+                            <div><strong>Solution Vector Form:</strong> The solution is a line segment in $\mathbb{R}^4$: $\mathbf{x} = \mathbf{p} + t\,\mathbf{d}$ where $\mathbf{p} = (250,\, 0,\, 100,\, 200)$, $\mathbf{d} = (-1,\, 1,\, -1,\, 1)$, $t \in [0,100]$.</div>
                         </div>
                     </div>
                 </div>
@@ -278,23 +364,36 @@
 
             <!-- Conclusion -->
             <section id="conclusion" class="reveal section-offset">
-                <div class="grid-2 align-start">
-                    <div class="conclusion-box">
-                        <h2 class="gradient-text">Final Discussion</h2>
-                        <p>MatrixFlow Labs proves that abstract theory dictates physical reality.</p>
-                        <p>By applying <strong>Adjacency Matrices</strong> and their subsequent powers, we bypassed recursive loop-finding and highlighted critical server vulnerabilities instantaneously.</p>
-                        <p>Through <strong>Gaussian Elimination</strong>, we uncovered the <em>free variable</em> in urban traffic, defining the exact maximum limits of a road ($x_2 \le 100$) before negative (impossible) traffic occurs.</p>
+                <div class="section-tag"><span class="glow-dot pink"></span> Phase 06 &mdash; Results</div>
+                <h2 class="gradient-text">Final Discussion</h2>
+                <p class="section-subtext">Two real systems. One algebraic backbone. Infinite applications.</p>
+
+                <div class="conclusion-grid">
+                    <div class="finding-card">
+                        <div class="finding-num">01</div>
+                        <h4>Cybersecurity Network</h4>
+                        <p>By representing a 10-node network as an adjacency matrix $A$ and computing $H = \sum_{p=1}^{k} A^p$, we obtained the complete $k$-hop infection map in $O(n^3)$ time — far more efficient than per-node traversal. Row sums of $H$ identify the most dangerous spreader; column sums identify the most exposed node.</p>
                     </div>
-                    
-                    <div class="bento-card ref-box">
-                        <h3 class="card-title">Bibliography</h3>
-                        <ol class="ref-list">
-                            <li>G. Strang, <em>Introduction to Linear Algebra</em>, 6th ed., Wellesley-Cambridge Press, 2022.</li>
-                            <li>H. Anton and C. Rorres, <em>Elementary Linear Algebra</em>, Wiley, 2013.</li>
-                            <li>ECE 317 Linear Algebra Lecture Notes, German Jordanian University.</li>
-                            <li>ECE 317 MATLAB Project Description, German Jordanian University.</li>
-                        </ol>
+                    <div class="finding-card">
+                        <div class="finding-num">02</div>
+                        <h4>Urban Traffic Flow</h4>
+                        <p>Conservation of flow at each junction produced a $4 \times 4$ system with $\text{rank}(A) = 3$, confirming linear dependence. Gaussian elimination on $[A\,|\,\mathbf{b}]$ revealed exactly one free variable $x_2 \in [0, 100]$ — the full solution is a line segment of valid traffic states in $\mathbb{R}^4$.</p>
                     </div>
+                </div>
+
+                <div class="insight-callout">
+                    <span class="insight-label">&#9670; Key Insight</span>
+                    <p>Both applications share the same algebraic backbone &mdash; encoding a network as a matrix transforms an intractable combinatorial problem into a tractable sequence of arithmetic operations that scale to any system size.</p>
+                </div>
+
+                <div class="ref-box glass-card">
+                    <h3 class="card-title">Bibliography</h3>
+                    <ol class="ref-list">
+                        <li>G. Strang, <em>Introduction to Linear Algebra</em>, 6th ed., Wellesley-Cambridge Press, 2022.</li>
+                        <li>H. Anton and C. Rorres, <em>Elementary Linear Algebra</em>, Wiley, 2013.</li>
+                        <li>ECE 317 Linear Algebra Lecture Notes, German Jordanian University.</li>
+                        <li>ECE 317 MATLAB Project Description, German Jordanian University.</li>
+                    </ol>
                 </div>
             </section>
 

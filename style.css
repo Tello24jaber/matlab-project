@@ -297,9 +297,35 @@ body.light-mode .slider-box { background: rgba(0,0,0,0.03); }
 #intersection-vis { position: relative; width: 100%; height: 100%; min-height: 350px; border-radius: 12px; border: 1px solid var(--glass-border); overflow: hidden; }
 #traffic-canvas { display: block; width: 100%; height: 100%; }
 
-.insights-bar { display: flex; gap: 1rem; background: rgba(16, 229, 154, 0.05); border: 1px solid rgba(16, 229, 154, 0.2); padding: 1.5rem; border-radius: 12px; font-size: 0.95rem; }
-.insights-bar div { flex: 1; }
+.insights-bar { display: flex; flex-wrap: wrap; gap: 1rem; background: rgba(16, 229, 154, 0.05); border: 1px solid rgba(16, 229, 154, 0.2); padding: 1.5rem; border-radius: 12px; font-size: 0.95rem; }
+.insights-bar div { flex: 1; min-width: 220px; }
 .insights-bar strong { color: var(--mint); display: block; margin-bottom: 4px; }
+
+/* Theory derivation panel */
+.theory-derivation { padding: 2rem; margin-bottom: 2rem; }
+.theory-derivation p { margin-bottom: 0.9rem; line-height: 1.75; }
+/* Gaussian Elimination Matrix Table */
+.matrix-steps { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; margin: 1rem 0; justify-content: center; }
+.matrix-step { text-align: center; }
+.step-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.5rem; }
+.aug-table { border-collapse: collapse; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; }
+.aug-table td { padding: 5px 10px; text-align: right; min-width: 24px; }
+.aug-table tr:nth-child(odd) td { background: rgba(255,255,255,0.03); }
+.aug-table .aug-sep { border-left: 2px solid var(--cyan); color: var(--cyan); font-weight: 600; padding-left: 14px; }
+.aug-table .dep-row td { color: var(--text-muted); opacity: 0.4; }
+.aug-table .dep-row .dep-note { opacity: 1; color: var(--mint) !important; font-size: 0.75rem; padding-left: 8px; white-space: nowrap; text-align: left; }
+.step-arrow { color: var(--cyan); font-size: 1.4rem; text-align: center; line-height: 1.5; padding: 0 0.5rem; }
+.step-arrow small { display: block; font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.03em; }
+body.light-mode .aug-table tr:nth-child(odd) td { background: rgba(0,0,0,0.03); }
+
+.theory-list { margin: 0.5rem 0 0.9rem 1.2rem; line-height: 1.9; }
+.theory-list li { margin-bottom: 0.25rem; }
+.eq-system { font-size: 1.05rem; line-height: 2; margin: 0.5rem 0 1rem 0; }
+.small-text { font-size: 0.78rem; line-height: 1.75; letter-spacing: 0.01em; }
+.mt-1 { margin-top: 0.75rem; }
+
+/* Extra bento theory cards */
+.bento-card .theory-list { margin: 0.6rem 0 0 1.1rem; font-size: 0.88rem; line-height: 1.85; }
 
 /* Syntax Highlighted Code */
 .code-window { margin-top: 1rem; }
@@ -315,6 +341,18 @@ body.light-mode .code-block .comment { color: #64748b; }
 .ref-box { padding: 2rem; background: transparent; border: none; box-shadow: none; }
 .ref-list { padding-left: 1.2rem; font-size: 0.85rem; color: var(--text-sec); }
 .ref-list li { margin-bottom: 0.8rem; }
+
+/* Conclusion section redesign */
+.conclusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0 1.5rem; }
+.finding-card { background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.75rem; transition: border-color 0.3s, transform 0.3s; }
+.finding-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
+.finding-num { font-family: 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 700; color: var(--cyan); opacity: 0.25; line-height: 1; margin-bottom: 0.6rem; }
+.finding-card h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem; }
+.finding-card p { font-size: 0.9rem; color: var(--text-sec); line-height: 1.8; margin: 0; }
+.insight-callout { border-left: 3px solid var(--pink); background: rgba(255,42,133,0.06); border-radius: 0 12px 12px 0; padding: 1.25rem 1.75rem; margin-bottom: 1.5rem; }
+.insight-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--pink); font-weight: 700; display: block; margin-bottom: 0.5rem; }
+.insight-callout p { font-size: 0.95rem; color: var(--text-sec); line-height: 1.75; margin: 0; }
+.ref-box.glass-card { padding: 1.75rem 2rem; }
 
 footer { text-align: center; padding: 4rem 0 2rem 0; font-size: 0.85rem; color: var(--text-sec); border-top: 1px solid var(--glass-border); margin-top: 4rem; }
 
@@ -355,4 +393,5 @@ footer { text-align: center; padding: 4rem 0 2rem 0; font-size: 0.85rem; color: 
     .nav-links { display: none; }
     .startup-title { font-size: 3rem; }
     .conclusion-box { padding-right: 0; border-right: none; border-bottom: 1px solid var(--glass-border); padding-bottom: 2rem; }
+    .conclusion-grid { grid-template-columns: 1fr; }
 }

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatrixFlow Labs - Project Report</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+    
+    <!-- Ambient Background Lighting -->
+    <div class="ambient-blob blob-1 no-print"></div>
+    <div class="ambient-blob blob-2 no-print"></div>
+    <div class="grid-overlay no-print"></div>
+
+    <!-- Splash Screen -->
+    <div id="splash" class="splash-screen no-print">
+        <canvas id="splash-canvas"></canvas>
+        <div class="splash-card">
+            <div class="badge fade-in-up">ECE 317 STARTUP PROJECT</div>
+            <h1 class="startup-title typing-effect">MatrixFlow Labs</h1>
+            <p class="subtitle fade-in-up delay-1">Protecting networks and optimizing urban traffic utilizing pure Linear Algebra.</p>
+            
+            <div class="founder-message fade-in-up delay-1">
+                <div class="mac-bar">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    <span class="bar-title">founder_note.sh</span>
+                </div>
+                <div class="terminal-body">
+                    <p><span class="prompt">~/matrixflow$</span> echo "I didn't want to submit a normal PDF report."</p>
+                    <p><span class="prompt">~/matrixflow$</span> echo "I built a platform to prove matrices are real engineering tools."</p>
+                    <p class="founder-name">>> Status: Founder Mode Engaged</p>
+                </div>
+            </div>
+            
+            <button id="enter-btn" class="primary-btn fade-in-up delay-2">
+                <span class="btn-text">Initialize Platform</span>
+                <span class="btn-glow"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Report Container -->
+    <main id="main-content" class="hidden">
+        
+        <div class="print-header only-print">
+            <h1>Modeling Malware Spread and Solving Traffic Flow Using Linear Algebra</h1>
+            <p>German Jordanian University | ECE 317 Linear Algebra Project</p>
+            <hr>
+        </div>
+
+        <!-- Floating Navbar -->
+        <nav class="navbar no-print">
+            <div class="nav-brand">MFL.<span class="text-cyan">_</span></div>
+            <ul class="nav-links">
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#theory">Theory</a></li>
+                <li><a href="#app1">Networks</a></li>
+                <li><a href="#app2">Traffic</a></li>
+                <li><a href="#matlab">MATLAB</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">☀️</button>
+                <button id="print-btn" class="secondary-btn">Download PDF</button>
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- Chapter 1: Mission -->
+            <section id="mission" class="reveal section-offset">
+                <div class="section-tag"><span class="glow-dot"></span> Phase 01 &mdash; The Premise</div>
+                <h2 class="gradient-text">Engineering with Matrices</h2>
+                <div class="glass-card premium-shadow">
+                    <div class="grid-2">
+                        <div>
+                            <h3 class="card-title">Problem Definition</h3>
+                            <p>Modern infrastructures—like corporate computer networks and urban road grids—contain thousands of interconnected nodes. Tracking paths or balancing loads manually is impossible.</p>
+                            <p>However, these systems can be effectively abstracted into matrices and systems of linear equations.</p>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Startup Objectives</h3>
+                            <ul class="custom-list">
+                                <li><strong>Application 1 (Cybersecurity):</strong> Model malware spread paths through router connections using $k$-hop reachability graphs.</li>
+                                <li><strong>Application 2 (Urban Mobility):</strong> Solve traffic flow through city intersections using Gaussian elimination and free variables.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 2: Theory -->
+            <section id="theory" class="reveal section-offset">
+                <div class="section-tag"><span class="glow-dot pink"></span> Phase 02 &mdash; The Mathematics</div>
+                <h2 class="gradient-text">Bento Graph Theory</h2>
+                <p class="section-subtext">Before launching our products, let's establish the mathematical foundation.</p>
+                
+                <div class="bento-grid">
+                    <div class="bento-card">
+                        <div class="mac-bar mini"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        <div class="bento-content">
+                            <h3>1. Adjacency Matrices ($A$)</h3>
+                            <p>A network graph is mapped into an $n \times n$ matrix. If node $i$ connects to node $j$, $A_{i,j} = 1$. Otherwise, it is $0$.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bento-card">
+                        <div class="mac-bar mini"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        <div class="bento-content">
+                            <h3>2. Matrix Powers ($A^k$)</h3>
+                            <p>Multiplying a matrix by itself counts paths. The entry $(i,j)$ in $A^2$ gives the number of ways to travel from $i$ to $j$ in exactly 2 steps.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="mac-bar mini"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        <div class="bento-content">
+                            <h3>3. Conservation of Flow</h3>
+                            <p>For traffic geometry: $In = Out$. This physical law creates a linear system $Ax = u$. Linearly dependent rows yield free variables.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bento-card col-span-3 highlight-bento">
+                        <div class="mac-bar mini"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        <div class="bento-content flex-row">
+                            <div class="b-left">
+                                <h3>4. Cumulative Reachability ($H$)</h3>
+                                <p>To find all routers hit by a virus spreading $k$ times across the network, we sum the path matrices. If $H_{i,j} > 0$, router $j$ is computationally compromised.</p>
+                            </div>
+                            <div class="b-right">
+                                <div class="math-block highlight-math">
+                                    H = A + A² + A³ + ... + Aᵏ
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 3: Malware Spread -->
+            <section id="app1" class="reveal section-offset">
+                <div class="section-tag"><span class="glow-dot cyan"></span> Phase 03 &mdash; Core Product I</div>
+                <h2 class="gradient-text">The Malware Map</h2>
+                <p class="section-subtext">Imagine a company network with 10 servers ($S_1 - S_{10}$). Using the logic of $H$, we map infection paths instantly.</p>
+                
+                <div class="app-glass-container">
+                    <div class="mac-bar">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        <span class="bar-title text-cyan">ThreatSimulator.exe</span>
+                    </div>
+                    <div class="app-body">
+                        <div class="grid-layout">
+                            <div class="sidebar">
+                                <div class="control-group">
+                                    <label>Patient Zero (Infected Node):</label>
+                                    <select id="infected-node" class="modern-select">
+                                        <option value="0">Server S1</option><option value="1">Server S2</option>
+                                        <option value="2">Server S3</option><option value="3">Server S4</option>
+                                        <option value="4">Server S5</option><option value="5">Server S6</option>
+                                        <option value="6">Server S7</option><option value="7">Server S8</option>
+                                        <option value="8">Server S9</option><option value="9">Server S10</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label>Threat Level ($k$-hops): <strong id="k-val" class="text-cyan text-xl">2</strong></label>
+                                    <input type="range" id="k-hops" class="modern-slider" min="1" max="5" value="2">
+                                </div>
+                                <div class="status-panel">
+                                    <div class="status-item">
+                                        <span class="status-label">Compromised Servers</span>
+                                        <span id="at-risk-nodes" class="status-val text-pink">-</span>
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-label">Most Critical Router</span>
+                                        <span id="most-critical" class="status-val text-cyan">-</span>
+                                        <small class="tool-tip">Can spread to the highest quantity of downstream routers.</small>
+                                    </div>
+                                    <div class="status-item">
+                                        <span class="status-label">Most Vulnerable Router</span>
+                                        <span id="most-vulnerable" class="status-val text-mint">-</span>
+                                        <small class="tool-tip">Has the highest number of upstream pathways pointing to it.</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="visualizer no-print">
+                                <svg id="network-lines" width="100%" height="100%"></svg>
+                                <div id="nodes-container"></div>
+                                <div class="scan-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 4: Traffic Flow -->
+            <section id="app2" class="reveal section-offset">
+                <div class="section-tag"><span class="glow-dot mint"></span> Phase 04 &mdash; Core Product II</div>
+                <h2 class="gradient-text">The Traffic Equation</h2>
+                <p class="section-subtext">Modeling an urban 4-way intersection. By solving the augmented matrix $[A|u]$, we manage smart-city loads.</p>
+                
+                <div class="app-glass-container">
+                    <div class="mac-bar">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        <span class="bar-title text-mint">CityBalancer.exe</span>
+                    </div>
+                    <div class="app-body">
+                        <div class="grid-2 align-center">
+                            <div class="traffic-math">
+                                <h3>The Physics of Flow</h3>
+                                <p>$x_1 + x_2 = 250$<br>
+                                $x_1 - x_3 = 150$<br>
+                                $-x_2 + x_4 = 200$<br>
+                                $x_3 + x_4 = 300$</p>
+                                <hr>
+                                <p>Because the rows are linearly dependent, we have infinite mathematical solutions. We isolate <strong>$x_2$</strong> as the <em>free variable</em>.</p>
+                                
+                                <div class="slider-box">
+                                    <label>Free Variable $x_2$: <strong class="text-cyan"><span id="x2-display">80</span> cars/h</strong></label>
+                                    <input type="range" id="x2-slider" class="modern-slider" min="0" max="100" value="80">
+                                </div>
+
+                                <div class="math-block full-width text-left mt-2">
+                                    <span class="dim">x₁ =</span> 250 - x₂ <span class="arrow">&rarr;</span> <strong id="tx1" class="text-pink">170</strong><br>
+                                    <span class="dim">x₂ =</span> <strong id="tx2" class="text-cyan">80</strong> <em>(Free)</em><br>
+                                    <span class="dim">x₃ =</span> 100 - x₂ <span class="arrow">&rarr;</span> <strong id="tx3" class="text-mint">20</strong><br>
+                                    <span class="dim">x₄ =</span> 200 + x₂ <span class="arrow">&rarr;</span> <strong id="tx4" class="text-lav">280</strong>
+                                </div>
+                            </div>
+                            
+                            <div class="intersection-vis no-print" id="intersection-vis">
+                                <canvas id="traffic-canvas"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="insights-bar mt-2">
+                            <div><strong>Engineering Limit:</strong> Since $x_3 = 100 - x_2 \ge 0$, the maximum capacity for $x_2$ is <strong>100</strong>.</div>
+                            <div><strong>Road Closure:</strong> If $x_2 = 0$, $x_1$ hits peak 250. The system absorbs the shock gracefully.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chapter 5: MATLAB Code -->
+            <section id="matlab" class="reveal section-offset">
+                <div class="section-tag"><span class="glow-dot lav"></span> Phase 05 &mdash; Implementation</div>
+                <h2 class="gradient-text">The Engine (MATLAB)</h2>
+                <div class="app-glass-container code-window">
+                    <div class="mac-bar">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        <span class="bar-title text-lav">KHopReachability.m</span>
+                    </div>
+                    <pre class="code-block"><code><span class="keyword">function</span> [riskCounts, riskNodes, mostCritical, mostVulnerable, reachabilityMatrix] = KHopReachability(A, k)
+    <span class="comment">% Computes cumulative powers to find infection spread</span>
+    n = size(A,1);
+    H = zeros(n, n);
+    Apow = A;
+    
+    <span class="keyword">for</span> p = 1:k
+        <span class="keyword">if</span> p > 1, Apow = Apow * A; <span class="keyword">end</span>
+        H = H + Apow;
+    <span class="keyword">end</span>
+    
+    <span class="comment">% Convert physical path counts to True/False logic</span>
+    reachabilityMatrix = H > 0;
+    
+    <span class="comment">% Remove self-risk</span>
+    <span class="keyword">for</span> i = 1:n, reachabilityMatrix(i,i) = false; <span class="keyword">end</span>
+    
+    <span class="comment">% Find critical nodes via row/column summations</span>
+    [~, mostCritical] = max(sum(reachabilityMatrix, 2));
+    [~, mostVulnerable] = max(sum(reachabilityMatrix, 1));
+<span class="keyword">end</span></code></pre>
+                </div>
+            </section>
+
+            <!-- Conclusion -->
+            <section id="conclusion" class="reveal section-offset">
+                <div class="grid-2 align-start">
+                    <div class="conclusion-box">
+                        <h2 class="gradient-text">Final Discussion</h2>
+                        <p>MatrixFlow Labs proves that abstract theory dictates physical reality.</p>
+                        <p>By applying <strong>Adjacency Matrices</strong> and their subsequent powers, we bypassed recursive loop-finding and highlighted critical server vulnerabilities instantaneously.</p>
+                        <p>Through <strong>Gaussian Elimination</strong>, we uncovered the <em>free variable</em> in urban traffic, defining the exact maximum limits of a road ($x_2 \le 100$) before negative (impossible) traffic occurs.</p>
+                    </div>
+                    
+                    <div class="bento-card ref-box">
+                        <h3 class="card-title">Bibliography</h3>
+                        <ol class="ref-list">
+                            <li>G. Strang, <em>Introduction to Linear Algebra</em>, 6th ed., Wellesley-Cambridge Press, 2022.</li>
+                            <li>H. Anton and C. Rorres, <em>Elementary Linear Algebra</em>, Wiley, 2013.</li>
+                            <li>ECE 317 Linear Algebra Lecture Notes, German Jordanian University.</li>
+                            <li>ECE 317 MATLAB Project Description, German Jordanian University.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        
+        <footer class="no-print">
+            <p>MatrixFlow Labs &copy; 2026. Interactive frontend for ECE 317 Academic Report.</p>
+            <p class="dim">Double-click <code>main_project.m</code> natively in MATLAB for raw computation.</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

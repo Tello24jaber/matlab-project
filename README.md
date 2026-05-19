@@ -84,5 +84,10 @@ matlab-project/
 
 ## Author
 
-**Jaber Tello** — ECE student, German Jordanian University  
-Course: ECE 317 Linear Algebra · Instructor submission
+| | |
+|---|---|
+| **Name** | Talal Jaber |
+| **Student ID** | 20231502117 |
+| **University** | German Jordanian University |
+| **Course** | ECE 317 — Linear Algebra |
+| **Also** | Founder, [Dinelink](https://github.com/Tello24jaber) |

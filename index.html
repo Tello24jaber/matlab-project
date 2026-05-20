@@ -12,6 +12,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+
 </head>
 <body class="dark-mode">
     
@@ -24,19 +25,19 @@
     <div id="splash" class="splash-screen no-print">
         <canvas id="splash-canvas"></canvas>
         <div class="splash-card">
-            <div class="badge fade-in-up">ECE 317 STARTUP PROJECT</div>
+            <div class="badge fade-in-up">ECE 317 &nbsp;&middot;&nbsp; LINEAR ALGEBRA PROJECT</div>
             <h1 class="startup-title typing-effect">MatrixFlow Labs</h1>
-            <p class="subtitle fade-in-up delay-1">Protecting networks and optimizing urban traffic utilizing pure Linear Algebra.</p>
+            <p class="subtitle fade-in-up delay-1">Two real systems. One algebraic backbone: $Ax = \mathbf{b}$. &nbsp;Rank, null space &amp; Gaussian elimination &mdash; applied.</p>
             
             <div class="founder-message fade-in-up delay-1">
                 <div class="mac-bar">
                     <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                    <span class="bar-title">founder_note.sh</span>
+                    <span class="bar-title">founder_note.m</span>
                 </div>
                 <div class="terminal-body">
-                    <p><span class="prompt">~/matrixflow$</span> echo "I didn't want to submit a normal PDF report."</p>
-                    <p><span class="prompt">~/matrixflow$</span> echo "I built a platform to prove matrices are real engineering tools."</p>
-                    <p class="founder-name">>> Talal Jaber · 20231502117 · Founder of Dinelink</p>
+                    <p><span class="prompt">&gt;&gt;</span> disp(<span class="t-str">'I didn&apos;t want to submit a normal PDF report.'</span>)</p>
+                    <p><span class="prompt">&gt;&gt;</span> disp(<span class="t-str">'I built a platform to prove matrices are real engineering tools.'</span>)</p>
+                    <p class="founder-name"><span class="prompt">%</span> Talal Jaber &nbsp;&middot;&nbsp; 20231502117 &nbsp;&middot;&nbsp; Founder of Dinelink</p>
                 </div>
             </div>
             
@@ -58,7 +59,7 @@
 
         <!-- Floating Navbar -->
         <nav class="navbar no-print">
-            <div class="nav-brand">MFL.<span class="text-cyan">_</span></div>
+            <div class="nav-brand"><span class="brand-mfl">MFL</span><span class="brand-dot text-cyan">.</span><span class="brand-full">MatrixFlow Labs</span></div>
             <ul class="nav-links">
                 <li><a href="#mission">Mission</a></li>
                 <li><a href="#theory">Theory</a></li>
@@ -66,10 +67,7 @@
                 <li><a href="#app2">Traffic</a></li>
                 <li><a href="#matlab">MATLAB</a></li>
             </ul>
-            <div class="nav-actions">
-                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">☀️</button>
-                <button id="print-btn" class="secondary-btn">Download PDF</button>
-            </div>
+            <div class="nav-actions"></div>
         </nav>
 
         <div class="container">
@@ -390,9 +388,9 @@
                     <h3 class="card-title">Bibliography</h3>
                     <ol class="ref-list">
                         <li>G. Strang, <em>Introduction to Linear Algebra</em>, 6th ed., Wellesley-Cambridge Press, 2022.</li>
-                        <li>H. Anton and C. Rorres, <em>Elementary Linear Algebra</em>, Wiley, 2013.</li>
-                        <li>ECE 317 Linear Algebra Lecture Notes, German Jordanian University.</li>
-                        <li>ECE 317 MATLAB Project Description, German Jordanian University.</li>
+                        <li>H. Anton and C. Rorres, <em>Elementary Linear Algebra: Applications Version</em>, 12th ed., Wiley, 2019.</li>
+                        <li>D. C. Lay, S. R. Lay, and J. J. McDonald, <em>Linear Algebra and Its Applications</em>, 6th ed., Pearson, 2021.</li>
+                        <li>C. D. Meyer, <em>Matrix Analysis and Applied Linear Algebra</em>, SIAM, 2000.</li>
                     </ol>
                 </div>
             </section>
